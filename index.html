@@ -4,436 +4,322 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#101827">
+<meta name="theme-color" content="#102b50">
 <title>الأكاديمية التعليمية</title>
 <style>
+:root{--navy:#102b50;--blue:#19466d;--teal:#19b6a5;--bg:#f2f6fb;--line:#e1e9f1;--muted:#718096}
 *{box-sizing:border-box}
-:root{--bg:#0b1220;--panel:#111d30;--card:#19273c;--text:#f1f5f9;--muted:#a9b8cc;--teal:#22c7a9;--border:#2b3a50}
-body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,Tahoma,sans-serif;line-height:1.9}
-header{padding:22px 15px;background:linear-gradient(135deg,#101827,#153956);border-bottom:1px solid var(--border)}
-.top{max-width:1050px;margin:auto;display:flex;align-items:center;gap:12px}
-.logo{width:48px;height:48px;display:grid;place-items:center;background:var(--teal);color:#062b26;border-radius:15px;font-size:25px}
-header h1{font-size:23px;margin:0;color:white}
-header p{margin:2px 0 0;color:#b6c7db;font-size:13px}
-nav{display:flex;gap:8px;max-width:1050px;margin:14px auto 0;overflow:auto}
-main{width:94%;max-width:1050px;margin:20px auto 40px;min-height:65vh}
-.panel,.card{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:16px;margin:12px 0}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}
-.card{background:var(--card);margin:0}
-.hero{padding:24px;background:linear-gradient(140deg,#163754,#123043)}
-.hero h2{color:white;font-size:25px}
-h2,h3{color:#66e5d0}
-p{overflow-wrap:anywhere}
-.muted{color:var(--muted)}
-button{border:0;border-radius:10px;background:var(--teal);color:#062a27;padding:10px 14px;margin:4px 2px;font-size:14px;font-weight:bold;cursor:pointer}
-button.secondary{background:#30445d;color:white}
-button.blue{background:#2563eb;color:white}
-button:hover{filter:brightness(1.08)}
-.hidden{display:none!important}
-.tag{display:inline-block;padding:2px 10px;border-radius:20px;background:#123d40;color:#77f2dd;font-size:12px}
-input[type=search]{width:100%;padding:12px;background:#0b1525;color:white;border:1px solid var(--border);border-radius:10px;margin:8px 0 15px}
-.option{display:block;background:#22334a;padding:10px 12px;border-radius:9px;margin:8px 0;cursor:pointer}
-.option input{margin-left:8px;accent-color:var(--teal)}
-textarea{width:100%;min-height:85px;background:#0b1525;color:white;border:1px solid #3a4b62;border-radius:10px;padding:11px;font:inherit}
-.answer{background:#123a30;border-right:4px solid var(--teal);padding:10px;margin-top:9px;border-radius:6px}
-.good{color:#6ee7a8;font-weight:bold}
-.bad{color:#fca5a5;font-weight:bold}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}
-.stat{background:#0c1728;border:1px solid var(--border);border-radius:12px;padding:12px;text-align:center}
-.stat b{display:block;color:var(--teal);font-size:20px}
-progress{width:100%;height:10px;accent-color:var(--teal)}
-summary{cursor:pointer;color:#75e9d5;font-weight:bold}
-footer{text-align:center;color:#a9b8cc;padding:20px;border-top:1px solid var(--border)}
-@media(max-width:480px){header h1{font-size:20px}.panel{padding:12px}.stats{grid-template-columns:1fr}}
+body{margin:0;background:var(--bg);color:#20334b;font-family:Tahoma,Arial,sans-serif;line-height:1.85}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+.hero{background:linear-gradient(130deg,#0c2342,#16466b 75%,#087f83);color:white;padding:24px 16px 28px;border-radius:0 0 26px 26px}
+.wrap,main{width:min(1100px,100%);margin:auto}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{width:48px;height:48px;border-radius:15px;background:#ffffff20;display:grid;place-items:center;font-size:26px}
+.brand small{display:block;color:#d3e8f3}
+.hero h1{font-size:clamp(23px,5vw,34px);margin:24px 0 5px}
+.hero p{color:#d6e9f4;margin:5px 0}
+.pills{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}
+.pill{background:#ffffff19;border:1px solid #ffffff30;border-radius:30px;padding:4px 12px;font-size:12px}
+main{padding:15px}
+nav{display:flex;gap:7px;overflow-x:auto;padding:12px 0}
+nav button{white-space:nowrap;border:0;background:white;color:var(--navy);border-radius:11px;padding:10px 13px;font-weight:bold}
+nav button.active{background:var(--navy);color:white}
+.view{display:none}.view.active{display:block}
+.panel,.card{background:white;border:1px solid var(--line);border-radius:17px;padding:16px;box-shadow:0 8px 25px #193a5b0b}
+h2{font-size:22px;margin:0 0 10px}h3{font-size:17px;margin:0 0 8px}
+.muted,.small{color:var(--muted);font-size:13px}
+.section-title{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:20px 0 12px}
+.searchbox{display:flex;gap:9px;align-items:center;background:white;border:1px solid var(--line);border-radius:13px;padding:0 12px;margin:15px 0}
+.searchbox input{width:100%;min-width:0;border:0;outline:0;padding:13px 0;background:transparent}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.course-top{display:flex;gap:12px;align-items:center}
+.course-icon{width:47px;height:47px;border-radius:14px;background:#e5f6f3;display:grid;place-items:center;font-size:25px;flex-shrink:0}
+.course h3{margin:0}.course p{font-size:13px;color:var(--muted)}
+.course-meta{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-top:12px}
+.mini-bar,.big-bar{height:8px;background:#e9eff5;border-radius:20px;overflow:hidden;margin-top:9px}
+.mini-bar span,.big-bar span{height:100%;display:block;background:var(--teal);width:0;transition:width .2s}
+.btn{border:0;border-radius:11px;background:var(--navy);color:white;padding:10px 14px;font-weight:bold;display:inline-flex;justify-content:center;align-items:center;gap:6px}
+.btn.teal{background:var(--teal);color:#073b40}.btn.light{background:#eaf1f7;color:var(--navy)}
+.btn.danger{background:#fff0f0;color:#a32626}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.lesson-item{display:flex;align-items:center;gap:10px;width:100%;text-align:right;background:white;border:1px solid var(--line);border-radius:12px;padding:11px;margin:8px 0;color:#20334b}
+.lesson-num{width:36px;height:36px;flex-shrink:0;display:grid;place-items:center;border-radius:11px;background:#edf3f9;color:var(--navy);font-weight:bold}
+.lesson-info{flex:1;min-width:0}.lesson-info strong{display:block;font-size:14px}.lesson-info small{display:block;color:var(--muted);font-size:12px}
+.note,.example,.content-box{padding:13px;border-radius:12px;margin:12px 0}
+.note{background:#e8f8f4;border-right:4px solid var(--teal)}
+.example{background:#fff7e7;border-right:4px solid #edb94e}
+.content-box{background:#f8fafc;border:1px solid var(--line)}
+input[type=text],input[type=search],textarea,select{width:100%;padding:11px;border:1px solid #d5e0eb;border-radius:10px;background:white;color:#20334b;margin:5px 0}
+textarea{min-height:100px;resize:vertical}
+.stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+.stat{background:#f5f9fc;border-radius:13px;padding:11px 5px;text-align:center}
+.stat strong{display:block;font-size:23px;color:var(--navy)}.stat span{font-size:12px;color:var(--muted)}
+.question{border:1px solid var(--line);padding:13px;border-radius:13px;margin:12px 0}
+.question p{font-weight:bold}
+.option{display:flex;gap:8px;align-items:flex-start;border:1px solid var(--line);border-radius:9px;padding:9px;margin:7px 0;cursor:pointer;font-size:14px}
+.option input{margin-top:7px;accent-color:var(--teal)}
+.result{border-radius:13px;padding:14px;margin:15px 0;background:#e7f8f3}
+.bad{background:#fff0f0}
+.empty{text-align:center;padding:25px;color:var(--muted)}
+footer{background:var(--navy);color:#d4e5f2;text-align:center;padding:22px 12px;margin-top:28px;font-size:13px}
+hr{border:0;border-top:1px solid var(--line);margin:17px 0}
+@media(min-width:760px){main{padding:22px}.hero{padding:30px 22px}}
+@media(max-width:450px){.grid{grid-template-columns:1fr}.panel,.card{padding:13px}.stat strong{font-size:20px}}
 </style>
 </head>
 <body>
-<header>
-<div class="top">
-<div class="logo">🎓</div>
-<div>
-<h1>الأكاديمية التعليمية</h1>
-<p>الفرقة الأولى • كلية التجارة • جامعة بني سويف</p>
-</div>
-</div>
-<nav>
-<button onclick="home()">الرئيسية</button>
-<button class="secondary" onclick="showSubjects()">المواد الدراسية</button>
-<button class="secondary" onclick="about()">عن المنصة</button>
-</nav>
+<header class="hero">
+ <div class="wrap">
+  <div class="brand"><div class="logo">🎓</div><div><strong>الأكاديمية التعليمية</strong><small>تعلم خطوة بخطوة</small></div></div>
+  <h1>ابدأ رحلتك نحو التفوق</h1>
+  <p>محاضرات منظمة، متابعة دراسية واختبارات تدريبية في مكان واحد.</p>
+  <div class="pills"><span class="pill">📚 الفرقة الأولى</span><span class="pill">🎯 تعلم حسب سرعتك</span><span class="pill">📱 تصميم للموبايل</span></div>
+ </div>
 </header>
-
 <main>
-<section id="homePage">
-<div class="panel hero">
-<span class="tag">منصة التعلم والمراجعة</span>
-<h2>أهلاً بك في رحلتك التعليمية</h2>
-<p>اختر مادتك، اقرأ المحاضرة، ثم اختبر فهمك وصحح إجاباتك.</p>
-<button onclick="showSubjects()">ابدأ المذاكرة ←</button>
-</div>
-<div class="stats">
-<div class="stat"><b>7</b>مواد دراسية</div>
-<div class="stat"><b>70</b>محاضرة</div>
-<div class="stat"><b>20</b>سؤالًا لكل محاضرة</div>
-</div>
-<div class="panel">
-<h2>المواد الدراسية</h2>
-<input type="search" id="subjectSearch" placeholder="ابحث عن مادة..." oninput="filterSubjects()">
-<div id="subjectList" class="grid"></div>
-</div>
+<nav>
+ <button class="active" data-nav="home" onclick="showView('home')">🏠 الرئيسية</button>
+ <button data-nav="courses" onclick="showView('courses')">📚 المواد</button>
+ <button data-nav="profile" onclick="showView('profile')">👤 ملفي الدراسي</button>
+ <button data-nav="scores" onclick="showView('scores')">📝 نتائجي</button>
+</nav>
+
+<section id="home" class="view active">
+ <div class="panel">
+  <h2>أهلًا بك في الأكاديمية 👋</h2><p class="muted">اختر مادة، وابدأ المذاكرة والاختبارات.</p>
+  <div class="stat-grid">
+   <div class="stat"><strong>7</strong><span>مواد</span></div>
+   <div class="stat"><strong>70</strong><span>محاضرة</span></div>
+   <div class="stat"><strong id="homeDone">0</strong><span>دروس مكتملة</span></div>
+  </div>
+  <div class="section-title"><h3>📈 تقدمك الدراسي</h3><span id="homePct" class="muted">0%</span></div>
+  <div class="big-bar"><span id="homeBar"></span></div>
+  <div class="actions"><button class="btn teal" onclick="showView('courses')">استكشف المواد ←</button><button class="btn light" onclick="showView('profile')">ملفي الدراسي</button></div>
+ </div>
+ <div class="section-title"><h2>المواد الدراسية</h2></div><div id="homeCourses" class="grid"></div>
+ <div class="note">💡 ذاكر المحاضرة ثم اختبر فهمك، وسجّل الدروس التي أنهيتها لمتابعة تقدمك.</div>
 </section>
 
-<section id="subjectsPage" class="panel hidden">
-<button class="secondary" onclick="home()">← الرئيسية</button>
-<h2>المواد الدراسية</h2>
-<input type="search" id="subjectSearch2" placeholder="ابحث عن مادة..." oninput="filterSubjects2()">
-<div id="subjectList2" class="grid"></div>
+<section id="courses" class="view">
+ <div class="panel"><h2>المواد الدراسية</h2><p class="muted">ابحث باسم المادة أو عنوان المحاضرة.</p>
+  <div class="searchbox">🔎 <input id="search" type="search" placeholder="ابحث عن مادة أو محاضرة..." oninput="renderCourses()"></div>
+  <div id="courseGrid" class="grid"></div>
+ </div>
 </section>
 
-<section id="lessonsPage" class="panel hidden">
-<button class="secondary" onclick="showSubjects()">← المواد</button>
-<h2 id="subjectHeading"></h2>
-<p class="muted">اختر محاضرة لعرض الشرح والأمثلة والاختبار.</p>
-<input type="search" id="lessonSearch" placeholder="ابحث عن محاضرة..." oninput="filterLessons()">
-<div id="lessonList" class="grid"></div>
-<hr>
-<button class="blue" onclick="startSubjectExam()">اختبار شامل للمادة</button>
+<section id="courseView" class="view">
+ <div class="panel">
+  <button class="btn light" onclick="showView('courses')">← العودة للمواد</button>
+  <h2 id="courseTitle" style="margin-top:15px"></h2><p id="courseDesc" class="muted"></p>
+  <div class="stat-grid"><div class="stat"><strong>10</strong><span>محاضرات</span></div><div class="stat"><strong id="courseDone">0</strong><span>مكتملة</span></div><div class="stat"><strong id="coursePct">0%</strong><span>التقدم</span></div></div>
+  <div class="big-bar"><span id="courseBar"></span></div>
+  <div class="actions"><button class="btn teal" onclick="startQuiz('subject')">📝 اختبار المادة</button></div>
+  <hr><h3>📖 المحاضرات</h3><div id="lessonList"></div>
+ </div>
 </section>
 
-<section id="lecturePage" class="panel hidden">
-<button class="secondary" onclick="goLessons()">← المحاضرات</button>
-<div id="lectureContent"></div>
-<button onclick="startLectureExam()">ابدأ اختبار المحاضرة - 20 سؤالًا</button>
+<section id="lessonView" class="view">
+ <div class="panel">
+  <button class="btn light" onclick="openCourse(currentSubject)">← قائمة المحاضرات</button>
+  <p class="muted" id="lessonMeta" style="margin-top:15px"></p><h2 id="lessonTitle"></h2>
+  <div class="content-box"><h3>🎯 أهداف المحاضرة</h3><div id="lessonGoals"></div></div>
+  <div class="content-box"><h3>📘 شرح المحاضرة</h3><div id="lessonExplanation"></div></div>
+  <div class="example"><h3>💡 مثال تطبيقي</h3><p id="lessonExample"></p></div>
+  <div class="content-box"><h3>🗒️ الملخص</h3><p id="lessonSummary"></p></div>
+  <div class="content-box"><h3>✍️ ملاحظاتي</h3><textarea id="lessonNotes" placeholder="اكتب ملاحظاتك هنا..."></textarea><button class="btn light" onclick="saveNotes()">حفظ الملاحظات</button></div>
+  <div class="note">المحتوى للمراجعة العامة، ويُرجى مطابقته مع كتاب المقرر ومحاضرات أستاذ المادة.</div>
+  <div class="actions"><button class="btn teal" onclick="markComplete()">✓ تحديد كمكتملة</button><button class="btn" onclick="startQuiz('lesson')">اختبار المحاضرة</button></div>
+  <div class="actions"><button class="btn light" onclick="moveLesson(-1)">→ السابقة</button><button class="btn light" onclick="moveLesson(1)">التالية ←</button></div>
+ </div>
 </section>
 
-<section id="examPage" class="panel hidden">
-<button class="secondary" onclick="backFromExam()">← رجوع</button>
-<div id="examContent"></div>
+<section id="quizView" class="view">
+ <div class="panel"><button class="btn light" onclick="showView(quizReturn)">← رجوع</button>
+  <h2 id="quizTitle" style="margin-top:15px">الاختبار التدريبي</h2>
+  <p class="muted">اختر الإجابات ثم اضغط تصحيح الاختبار.</p>
+  <div id="quizQuestions"></div><div id="quizResult"></div>
+  <button id="gradeBtn" class="btn teal" onclick="gradeQuiz()">تصحيح الاختبار</button>
+ </div>
 </section>
 
-<section id="aboutPage" class="panel hidden">
-<button class="secondary" onclick="home()">← الرئيسية</button>
-<h2>عن الأكاديمية</h2>
-<p>منصة تعليمية لتنظيم المحاضرات والمراجعة والتدريب على الأسئلة.</p>
-<p>التصحيح الكتابي آلي وتقريبي باستخدام الكلمات المفتاحية، وقد لا يتعرف على كل إجابة صحيحة بصياغة مختلفة. الأسئلة تدريبية وليست امتحانات رسمية.</p>
+<section id="profile" class="view">
+ <div class="panel"><h2>👤 الملف الشخصي للطالب</h2><p class="muted">بياناتك تحفظ على هذا الجهاز والمتصفح.</p>
+  <label for="studentName">اسم الطالب</label><input id="studentName" type="text" placeholder="اكتب اسمك">
+  <label for="studentYear">الفرقة الدراسية</label><select id="studentYear"><option>الفرقة الأولى</option><option>الفرقة الثانية</option><option>الفرقة الثالثة</option><option>الفرقة الرابعة</option></select>
+  <label for="studentGoal">هدفي الدراسي</label><textarea id="studentGoal" placeholder="اكتب هدفك الدراسي"></textarea>
+  <button class="btn teal" onclick="saveProfile()">حفظ الملف الشخصي</button><hr>
+  <h3>📈 إنجازك</h3><div class="stat-grid"><div class="stat"><strong id="profileDone">0</strong><span>دروس مكتملة</span></div><div class="stat"><strong id="profileTests">0</strong><span>اختبارات</span></div><div class="stat"><strong id="profileAvg">—</strong><span>متوسط النتائج</span></div></div>
+  <p class="small">لا تدخل كلمات مرور أو بيانات حساسة.</p>
+ </div>
+</section>
+
+<section id="scores" class="view">
+ <div class="panel"><h2>📝 نتائجي السابقة</h2><p class="muted">نتائج الاختبارات المحفوظة في هذا المتصفح.</p><div id="scoreList"></div><button class="btn light" onclick="showView('courses')">ابدأ اختبارًا جديدًا</button></div>
 </section>
 </main>
-<footer>الأكاديمية التعليمية © 2026</footer>
+<footer><strong>🎓 الأكاديمية التعليمية</strong><p>منصة للمذاكرة والمراجعة والتدريب</p><p>© 2026 الأكاديمية التعليمية</p></footer>
 
 <script>
-const subjects=[
-"أصول المحاسبة المالية","مبادئ الاقتصاد الجزئي","اقتصاديات التطور",
-"أصول إدارة الأعمال","الرياضيات البحتة","اللغة الأوروبية","الصحة والسلامة"
+const courses=[
+{name:"أصول المحاسبة المالية",icon:"🧮",kind:"accounting",topics:["مفهوم المحاسبة المالية وأهميتها","المعادلة المحاسبية","الحسابات المدينة والدائنة","تحليل العمليات المالية","دفتر اليومية","دفتر الأستاذ والترحيل","ميزان المراجعة","التسويات المحاسبية","القوائم المالية","مراجعة الدورة المحاسبية"]},
+{name:"مبادئ الاقتصاد الجزئي",icon:"📊",kind:"economics",topics:["مفهوم الاقتصاد والندرة","تكلفة الفرصة البديلة","الطلب والعوامل المؤثرة فيه","العرض والعوامل المؤثرة فيه","توازن السوق","مرونة الطلب والعرض","سلوك المستهلك","الإنتاج والتكاليف","أنواع الأسواق","مراجعة الاقتصاد الجزئي"]},
+{name:"اقتصاديات التطور",icon:"🌍",kind:"development",topics:["مفهوم التنمية الاقتصادية","الفرق بين النمو والتنمية","خصائص الاقتصادات النامية","الموارد الاقتصادية والتنمية","رأس المال والاستثمار","السكان والتنمية","التعليم ورأس المال البشري","التكنولوجيا والإنتاجية","الفقر وعدم المساواة","مراجعة اقتصاديات التطور"]},
+{name:"أصول إدارة الأعمال",icon:"💼",kind:"management",topics:["مفهوم الإدارة وأهميتها","وظائف الإدارة","التخطيط الإداري","التنظيم الإداري","القيادة والتوجيه","الرقابة الإدارية","اتخاذ القرارات","التحفيز في العمل","الاتصال الإداري","مراجعة إدارة الأعمال"]},
+{name:"الرياضيات البحتة",icon:"📐",kind:"math",topics:["مجموعات الأعداد","العمليات الحسابية","المعادلات الخطية","المعادلات التربيعية","المتباينات","الدوال الرياضية","الأسس والجذور","المصفوفات","المتتابعات","مراجعة الرياضيات"]},
+{name:"اللغة الأوروبية",icon:"🌐",kind:"language",topics:["التحيات والتعارف","التعريف بالنفس","الضمائر الشخصية","الأفعال الأساسية","الأسماء والصفات","تركيب الجملة","الأزمنة الأساسية","مصطلحات التجارة والأعمال","القراءة والفهم","مراجعة اللغة الأوروبية"]},
+{name:"الصحة والسلامة المهنية",icon:"🦺",kind:"safety",topics:["مفهوم الصحة والسلامة المهنية","تحديد المخاطر وتقييمها","الوقاية من الحوادث","السلامة في بيئة العمل","السلامة الكهربائية","الوقاية من الحرائق والطوارئ","معدات الوقاية الشخصية","مبادئ الإسعافات الأولية","خطط الطوارئ والإخلاء","ثقافة السلامة والتحسين المستمر"]}
 ];
-
-const titles={
-"أصول المحاسبة المالية":[
-"مفهوم المحاسبة المالية وأهميتها","المعادلة المحاسبية","الحسابات المدينة والدائنة","تحليل العمليات المالية","دفتر اليومية","دفتر الأستاذ والترحيل","ميزان المراجعة","التسويات المحاسبية","القوائم المالية","مراجعة الدورة المحاسبية"],
-"مبادئ الاقتصاد الجزئي":[
-"مفهوم الاقتصاد والندرة","تكلفة الفرصة البديلة","الطلب والعوامل المؤثرة فيه","العرض والعوامل المؤثرة فيه","توازن السوق","مرونة الطلب والعرض","سلوك المستهلك","الإنتاج والتكاليف","أنواع الأسواق","مراجعة الاقتصاد الجزئي"],
-"اقتصاديات التطور":[
-"مفهوم التنمية الاقتصادية","الفرق بين النمو والتنمية","خصائص الاقتصادات النامية","الموارد الاقتصادية والتنمية","رأس المال والاستثمار","السكان والتنمية","التعليم ورأس المال البشري","التكنولوجيا والإنتاجية","الفقر وعدم المساواة","مراجعة اقتصاديات التطور"],
-"أصول إدارة الأعمال":[
-"مفهوم الإدارة وأهميتها","وظائف الإدارة","التخطيط الإداري","التنظيم الإداري","القيادة والتوجيه","الرقابة الإدارية","اتخاذ القرارات","التحفيز في العمل","الاتصال الإداري","مراجعة إدارة الأعمال"],
-"الرياضيات البحتة":[
-"مجموعات الأعداد","العمليات الحسابية","المعادلات الخطية","المعادلات التربيعية","المتباينات","الدوال الرياضية","الأسس والجذور","المصفوفات","المتتابعات","مراجعة الرياضيات"],
-"اللغة الأوروبية":[
-"التحيات والتعارف","التعريف بالنفس","الضمائر الشخصية","الأفعال الأساسية","الأسماء والصفات","تركيب الجملة","الأزمنة الأساسية","مصطلحات التجارة والأعمال","القراءة والفهم","مراجعة اللغة"],
-"الصحة والسلامة":[
-"مفهوم الصحة والسلامة","تحديد المخاطر","الوقاية من الحوادث","السلامة الكهربائية","الوقاية من الحرائق","الإسعافات الأولية","النظافة والصحة المهنية","معدات الوقاية الشخصية","التعامل مع الطوارئ","مراجعة الصحة والسلامة"]
+const $=id=>document.getElementById(id);
+let currentSubject=0,currentLesson=0,quizType="lesson",quizReturn="lessonView",quizQuestions=[],quizSubmitted=false;
+function readStore(k,f){try{let v=localStorage.getItem(k);return v?JSON.parse(v):f}catch(e){return f}}
+function writeStore(k,v){try{localStorage.setItem(k,JSON.stringify(v));return true}catch(e){alert("تعذر الحفظ في المتصفح.");return false}}
+function esc(v){return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function doneList(){return readStore("academyDone",[])}
+function scores(){return readStore("academyScores",[])}
+function key(s,l){return s+"-"+l}
+function isDone(s,l){return doneList().includes(key(s,l))}
+function doneCount(s){return courses[s].topics.filter((t,l)=>isDone(s,l)).length}
+function showView(id){
+ document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));
+ if($(id))$(id).classList.add("active");
+ document.querySelectorAll("nav button").forEach(b=>b.classList.toggle("active",b.dataset.nav===id));
+ if(id==="home")renderHome();if(id==="courses")renderCourses();if(id==="profile")renderProfile();if(id==="scores")renderScores();
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+function courseCard(c,i){
+ let n=doneCount(i);
+ return `<article class="card"><div class="course-top"><div class="course-icon">${c.icon}</div><div><h3>${esc(c.name)}</h3><p>10 محاضرات دراسية</p></div></div><div class="mini-bar"><span style="width:${n*10}%"></span></div><div class="course-meta"><span>${n}/10 محاضرات مكتملة</span><span>${n*10}%</span></div><div class="actions"><button class="btn" onclick="openCourse(${i})">فتح المادة ←</button></div></article>`;
+}
+function renderHome(){
+ let n=doneList().length;
+ $("homeDone").textContent=n;$("homePct").textContent=Math.round(n/70*100)+"%";$("homeBar").style.width=n/70*100+"%";
+ $("homeCourses").innerHTML=courses.slice(0,4).map(courseCard).join("");
+}
+function renderCourses(){
+ let q=($("search").value||"").trim().toLowerCase(),html="";
+ courses.forEach((c,i)=>{if(!q||c.name.toLowerCase().includes(q)||c.topics.some(t=>t.toLowerCase().includes(q)))html+=courseCard(c,i)});
+ $("courseGrid").innerHTML=html||'<div class="empty">لا توجد نتائج. جرّب كلمة أخرى.</div>';
+}
+function openCourse(i){
+ currentSubject=i;let c=courses[i],n=doneCount(i);
+ $("courseTitle").textContent=c.icon+" "+c.name;
+ $("courseDesc").textContent="افتح محاضرة للمذاكرة، وحددها كمكتملة بعد الانتهاء.";
+ $("courseDone").textContent=n;$("coursePct").textContent=n*10+"%";$("courseBar").style.width=n*10+"%";
+ $("lessonList").innerHTML=c.topics.map((t,l)=>`<button class="lesson-item" onclick="openLesson(${i},${l})"><span class="lesson-num">${l+1}</span><span class="lesson-info"><strong>${esc(t)}</strong><small>${isDone(i,l)?"مكتملة ✓":"محاضرة "+(l+1)}</small></span><span>${isDone(i,l)?"✓":"›"}</span></button>`).join("");
+ showView("courseView");
+}
+function makeLesson(c,t){
+ const data={
+ accounting:["المحاسبة المالية نظام لتحديد العمليات المالية وتسجيلها وتصنيفها وتلخيصها وعرض نتائجها.","تساعد المعلومات المحاسبية المستخدمين على تقييم الأداء والمركز المالي واتخاذ القرارات.","تعتمد المحاسبة على مستندات وبيانات قابلة للفحص، ويجب تنظيم الحسابات ومراجعتها.","إذا اشترت منشأة أدوات نقدًا، فيجب تحديد الحسابات المتأثرة وقيمة العملية وتسجيلها وفق القواعد المحاسبية."],
+ economics:["يدرس الاقتصاد كيفية استخدام الموارد المحدودة لإشباع حاجات متعددة.","يساعد التحليل الاقتصادي على فهم قرارات المستهلك والمنتج والعلاقة بين الأسعار والكميات.","تتأثر النتائج الاقتصادية بعوامل متعددة، لذا يجب تحديد الافتراضات والظروف قبل الاستنتاج.","إذا تغير سعر سلعة مع ثبات العوامل الأخرى، فقد تتغير الكمية المطلوبة وفق طبيعة السلعة والظروف."],
+ development:["تهتم اقتصاديات التطور بالتحولات الاقتصادية والاجتماعية التي تحسن مستوى المعيشة.","ترتبط التنمية بكفاءة استخدام الموارد وتحسين الإنتاجية وتوسيع فرص التعليم والعمل.","تختلف نتائج السياسات التنموية حسب الموارد والمؤسسات والظروف الاجتماعية والاقتصادية.","يمكن أن يسهم تدريب العاملين في تحسين مهاراتهم وإنتاجيتهم ودعم القدرة الإنتاجية."],
+ management:["تهدف الإدارة إلى تنسيق الموارد والجهود لتحقيق أهداف محددة بكفاءة وفاعلية.","تتكامل وظائف التخطيط والتنظيم والتوجيه والرقابة في العمل الإداري.","يساعد وضوح الأهداف وتوزيع المسؤوليات ومتابعة النتائج على تحسين الأداء.","يمكن لمنشأة وضع هدف شهري وتوزيع المهام ومقارنة النتائج بالخطة."],
+ math:["تعتمد الرياضيات على تعريف الرموز والقواعد ثم تطبيق العمليات بصورة دقيقة ومنظمة.","ينبغي تحديد المعطيات والمطلوب واختيار القاعدة المناسبة والتحقق من الناتج.","يساعد التدرج في خطوات الحل على تجنب أخطاء الحساب.","حدد المعطيات، وطبّق القاعدة الرياضية المناسبة خطوة خطوة، ثم تحقق من الحل."],
+ language:["يساعد تعلم اللغة على فهم المفردات والتراكيب واستخدامها في التواصل.","من المهم ملاحظة ترتيب الكلمات والسياق والمعنى والتدرب على القراءة والكتابة.","تتحسن المهارة بالممارسة المنتظمة ومراجعة الأمثلة وتصحيح الأخطاء.","اكتب جملة مرتبطة بموضوع المحاضرة، ثم راجع المفردات والترتيب وصحة المعنى."],
+ safety:["تهدف الصحة والسلامة المهنية إلى حماية الأشخاص وتقليل المخاطر في بيئة العمل.","تبدأ الوقاية بتحديد الخطر وتقييم احتماله وشدة أثره ثم اختيار إجراء مناسب.","يساعد التدريب والالتزام بالتعليمات والإبلاغ عن المخاطر على تقليل الحوادث.","عند ملاحظة خطر في مكان العمل، اتبع إجراءات الإبلاغ ولا تعرض نفسك أو الآخرين للخطر."]
+ };
+ let d=data[c.kind]||data.management;
+ return {goals:["فهم موضوع "+t,"تحديد أهم الأفكار والمصطلحات","شرح الفكرة وتطبيقها على مثال"],explain:["تتناول هذه المحاضرة موضوع «"+t+"». ابدأ بتحديد المفهوم الأساسي وربطه بالمفاهيم السابقة والمواقف العملية.",d[0],d[1],d[2],"للمذاكرة الجيدة، اكتب التعريفات الأساسية بكلماتك، وميّز بين المفاهيم المتشابهة، ثم اختبر فهمك بسؤال أو مثال جديد."],example:d[3],summary:"تركز المحاضرة على "+t+" وفهم المفهوم الأساسي وأهميته وطريقة تطبيقه. راجع التعريفات والنقاط الرئيسية، ثم حاول شرح الفكرة دون النظر إلى الملاحظات."};
+}
+function openLesson(s,l){
+ currentSubject=s;currentLesson=l;let c=courses[s],t=c.topics[l],d=makeLesson(c,t);
+ $("lessonMeta").textContent=c.name+" • المحاضرة "+(l+1)+" من 10";$("lessonTitle").textContent=t;
+ $("lessonGoals").innerHTML="<ul>"+d.goals.map(x=>"<li>"+esc(x)+"</li>").join("")+"</ul>";
+ $("lessonExplanation").innerHTML=d.explain.map(x=>"<p>"+esc(x)+"</p>").join("");
+ $("lessonExample").textContent=d.example;$("lessonSummary").textContent=d.summary;
+ $("lessonNotes").value=readStore("academyNotes",{})[key(s,l)]||"";
+ showView("lessonView");
+}
+function markComplete(){
+ let a=doneList(),k=key(currentSubject,currentLesson);if(!a.includes(k))a.push(k);
+ writeStore("academyDone",a);openCourse(currentSubject);
+}
+function moveLesson(d){let n=currentLesson+d;if(n<0||n>9){openCourse(currentSubject);return}openLesson(currentSubject,n)}
+function saveNotes(){let n=readStore("academyNotes",{});n[key(currentSubject,currentLesson)]=$("lessonNotes").value;if(writeStore("academyNotes",n))alert("تم حفظ ملاحظاتك.");}
+function saveProfile(){
+ writeStore("academyProfile",{name:$("studentName").value.trim(),year:$("studentYear").value,goal:$("studentGoal").value.trim()});
+ alert("تم حفظ الملف الشخصي على هذا الجهاز.");renderProfile();
+}
+function renderProfile(){
+ let p=readStore("academyProfile",{});
+ $("studentName").value=p.name||"";$("studentYear").value=p.year||"الفرقة الأولى";$("studentGoal").value=p.goal||"";
+ $("profileDone").textContent=doneList().length;$("profileTests").textContent=scores().length;
+ let a=scores();$("profileAvg").textContent=a.length?Math.round(a.reduce((n,x)=>n+x.pct,0)/a.length)+"%":"—";
+}
+const banks={
+accounting:[
+["ما الهدف الأساسي للمحاسبة المالية؟",["توفير معلومات مالية منظمة","تحديد الطقس","تصميم المباني","إدارة المرور"],0],
+["ما المعادلة المحاسبية الأساسية؟",["الأصول = الالتزامات + حقوق الملكية","الإيرادات = الأصول دائمًا","الأصول = المصروفات فقط","النقدية = الأرباح دائمًا"],0],
+["ما وظيفة دفتر اليومية؟",["تسجيل العمليات بترتيب زمني","حساب الحضور","قياس درجات الحرارة","تحديد الأسعار فقط"],0],
+["ما الغرض من ميزان المراجعة؟",["التحقق من تساوي الأرصدة المدينة والدائنة","إثبات عدم وجود أي خطأ نهائيًا","حساب عدد الموظفين","تحديد الأسعار"],0],
+["ماذا تعرض القوائم المالية؟",["المعلومات والمركز والأداء المالي","درجات الطلاب فقط","الطقس","الحضور فقط"],0]],
+economics:[
+["ما المشكلة الاقتصادية الأساسية؟",["ندرة الموارد مقارنة بالحاجات","توافر الموارد بلا حدود","انعدام الحاجات","ثبات جميع الأسعار"],0],
+["ما تكلفة الفرصة البديلة؟",["قيمة أفضل بديل تم التخلي عنه","مجموع الأرباح فقط","السعر دون بديل","قيمة النقود فقط"],0],
+["ماذا يوضح الطلب؟",["العلاقة بين السعر والكمية المطلوبة","تكاليف الحكومة فقط","عدد الموظفين","الضرائب فقط"],0],
+["متى يتحقق توازن السوق في النموذج الأساسي؟",["عندما تتساوى الكمية المطلوبة والمعروضة","عندما ينعدم الطلب دائمًا","عندما يكون السعر صفرًا بالضرورة","عندما تختفي الشركات"],0],
+["ماذا تقيس مرونة الطلب السعرية؟",["استجابة الكمية المطلوبة لتغير السعر","عدد العمال","قيمة الأصول","مستوى التعليم فقط"],0]],
+development:[
+["ما الهدف العام للتنمية الاقتصادية؟",["تحسين القدرات ومستوى المعيشة","إلغاء التعليم","تقليل الإنتاجية","زيادة الواردات فقط"],0],
+["ما الفرق الأساسي بين النمو والتنمية؟",["النمو يركز على الناتج والتنمية أوسع وتشمل جوانب متعددة","المفهومان متطابقان دائمًا","التنمية تعني انخفاض التعليم","النمو يعني اختفاء الإنتاج"],0],
+["كيف يسهم التعليم في التنمية؟",["تطوير المهارات ورأس المال البشري","منع اكتساب المهارات","إلغاء التكنولوجيا","تقليل المعرفة"],0],
+["ما دور الاستثمار؟",["دعم تكوين رأس المال والقدرة الإنتاجية","إلغاء جميع التكاليف","ضمان الأرباح دائمًا","منع التوظيف بالضرورة"],0],
+["لماذا نقيس الفقر؟",["لفهم الاحتياجات وتوجيه السياسات","لإلغاء البيانات","لتحديد الأسعار فقط","لمنع التخطيط"],0]],
+management:[
+["أي وظيفة تحدد الأهداف وطرق تحقيقها؟",["التخطيط","الرقابة فقط","الاتصال فقط","المحاسبة فقط"],0],
+["ما هدف التنظيم الإداري؟",["توزيع المهام والمسؤوليات","إلغاء الأدوار","منع التنسيق","تجاهل الأهداف"],0],
+["ما فائدة الرقابة الإدارية؟",["مقارنة الأداء بالمعايير وتصحيح الانحرافات","إلغاء التخطيط","منع التغذية الراجعة","تجاهل النتائج"],0],
+["ما المقصود باتخاذ القرار؟",["اختيار بديل مناسب من بين بدائل","تجاهل المعلومات","اختيار عشوائي دائمًا","تجنب المشكلة"],0],
+["ما أهمية الاتصال الإداري؟",["نقل المعلومات وتنسيق الجهود","منع تبادل المعلومات","إلغاء المسؤوليات","تجاهل العاملين"],0]],
+math:[
+["ما حل المعادلة 2س + 4 = 10؟",["س = 3","س = 7","س = 2","س = 4"],0],
+["أي مما يلي عدد صحيح؟",["-3","2.5","√2","π"],0],
+["ما قيمة 3²؟",["9","6","8","12"],0],
+["ما الذي تمثله الدالة؟",["علاقة تربط كل مدخل في المجال بمخرج واحد","قائمة أعداد فقط","عملية جمع فقط","عدد سالب دائمًا"],0],
+["ما المصفوفة؟",["ترتيب للعناصر في صفوف وأعمدة","معادلة بلا أرقام","عدد أولي فقط","مجموعة كلمات"],0]],
+language:[
+["أي عبارة تستخدم للتحية بالإنجليزية؟",["Good morning","Book table","Because quickly","Thank you yesterday"],0],
+["ما ضمير المتكلم المفرد بالإنجليزية؟",["I","They","We","You"],0],
+["أي كلمة اسم؟",["Book","Quickly","Beautiful","Slowly"],0],
+["أي جملة صحيحة؟",["She is a student.","She are student.","They is happy.","I are ready."],0],
+["ما معنى Business؟",["الأعمال أو النشاط التجاري","نافذة","قلم","مستشفى"],0]],
+safety:[
+["ما الخطوة الأولى في إدارة المخاطر؟",["تحديد المخاطر","تجاهل الخطر","إزالة التحذيرات","إيقاف الإبلاغ"],0],
+["ماذا تفعل عند ملاحظة خطر كهربائي؟",["اتباع إجراءات السلامة والإبلاغ","لمس الأسلاك","تجاهل الخطر","صب الماء على المعدات"],0],
+["ما هدف معدات الوقاية الشخصية؟",["تقليل التعرض للمخاطر","إلغاء الحاجة للتدريب","ضمان عدم وقوع حادث مطلقًا","استبدال جميع إجراءات السلامة"],0],
+["ما التصرف المناسب عند إنذار الإخلاء؟",["اتباع خطة الإخلاء والتعليمات","العودة لجمع الأغراض","تجاهل الإنذار","استخدام المصعد دائمًا"],0],
+["ماذا تفعل عند وقوع حادث؟",["الإبلاغ وطلب المساعدة المناسبة","إخفاء الحادث","تجاوز الإجراءات","تعريض نفسك لخطر إضافي"],0]]
 };
-
-const descriptions={
-"أصول المحاسبة المالية":"المحاسبة المالية نظام لجمع المعلومات المالية وتسجيلها وتصنيفها وتلخيصها. تبدأ بتحليل المستندات والعمليات، ثم تسجيل القيود وترحيلها وإعداد ميزان المراجعة والتسويات والقوائم المالية. تساعد المعلومات الناتجة أصحاب المنشآت والمستثمرين والدائنين على اتخاذ القرارات.",
-"مبادئ الاقتصاد الجزئي":"يدرس الاقتصاد الجزئي كيفية اتخاذ المستهلكين والمنتجين قراراتهم في ظل محدودية الموارد. تشمل موضوعاته الندرة والاختيار وتكلفة الفرصة البديلة والطلب والعرض والتوازن والمرونة وسلوك المستهلك والإنتاج والتكاليف وأشكال الأسواق.",
-"اقتصاديات التطور":"تتناول التنمية الاقتصادية تحسين الإنتاجية ومستوى المعيشة، والموارد والاستثمار والسكان والتعليم والتكنولوجيا والفقر. النمو زيادة في الناتج الحقيقي، أما التنمية فهي أوسع وتشمل جوانب اقتصادية واجتماعية.",
-"أصول إدارة الأعمال":"الإدارة تنسيق الأفراد والموارد لتحقيق الأهداف بكفاءة وفاعلية. تشمل وظائفها التخطيط والتنظيم والتوجيه والرقابة، إلى جانب اتخاذ القرارات والقيادة والتحفيز والاتصال الإداري.",
-"الرياضيات البحتة":"تتناول المادة مجموعات الأعداد والعمليات الحسابية والمعادلات والمتباينات والدوال والأسس والجذور والمصفوفات والمتتابعات. ينبغي فهم القواعد وكتابة خطوات الحل والتحقق من النتائج.",
-"اللغة الأوروبية":"تساعد المحاضرات على تطوير المفردات والقواعد والقراءة والتواصل. أمثلة هذه الصفحة تميل إلى الإنجليزية؛ طابقها مع اللغة المحددة في مقررك.",
-"الصحة والسلامة":"تهدف الصحة والسلامة إلى الوقاية من الحوادث وتحديد المخاطر واستخدام معدات الوقاية واتباع إجراءات الطوارئ والتعليمات المهنية المعتمدة."
-};
-
-let currentSubject="",currentLesson=0,examMode="lesson",questionsNow=[];
-
-function el(id){return document.getElementById(id)}
-function showPage(id){
-["homePage","subjectsPage","lessonsPage","lecturePage","examPage","aboutPage"].forEach(x=>el(x).classList.add("hidden"));
-el(id).classList.remove("hidden");
-window.scrollTo(0,0);
+function startQuiz(type){
+ quizType=type;quizReturn=type==="lesson"?"lessonView":"courseView";quizSubmitted=false;
+ let c=courses[currentSubject],topics=type==="lesson"?[c.topics[currentLesson]]:c.topics,bank=banks[c.kind]||banks.management;
+ quizQuestions=topics.map((t,i)=>{let b=bank[i%bank.length];return{q:"بخصوص «"+t+"»: "+b[0],options:b[1],correct:b[2]}});
+ $("quizTitle").textContent=type==="lesson"?"اختبار: "+c.topics[currentLesson]:"اختبار مادة: "+c.name;
+ $("quizResult").innerHTML="";$("gradeBtn").disabled=false;
+ $("quizQuestions").innerHTML=quizQuestions.map((q,i)=>`<div class="question" id="q${i}"><p>${i+1}. ${esc(q.q)}</p>${q.options.map((o,j)=>`<label class="option"><input type="radio" name="a${i}" value="${j}"><span>${esc(o)}</span></label>`).join("")}<div id="f${i}" class="small"></div></div>`).join("");
+ showView("quizView");
 }
-function home(){showPage("homePage")}
-function showSubjects(){renderSubjects();showPage("subjectsPage")}
-function about(){showPage("aboutPage")}
-function goLessons(){openSubject(subjects.indexOf(currentSubject))}
-function init(){renderSubjects()}
-function subjectCard(s){
-return `<div class="card"><span class="tag">10 محاضرات</span><h3>${s}</h3><p class="muted">شرح واختبارات تدريبية</p><button onclick="openSubject(${subjects.indexOf(s)})">استعرض المادة</button></div>`;
+function gradeQuiz(){
+ if(quizSubmitted)return;quizSubmitted=true;let score=0,answered=0;
+ quizQuestions.forEach((q,i)=>{
+  let selected=document.querySelector('input[name="a'+i+'"]:checked'),correct=selected&&Number(selected.value)===q.correct,fb=$("f"+i);
+  if(selected)answered++;if(correct)score++;
+  fb.textContent=correct?"✓ إجابة صحيحة":"الإجابة الصحيحة: "+q.options[q.correct];
+  fb.style.color=correct?"#11836f":"#b3261e";
+  document.querySelectorAll('input[name="a'+i+'"]').forEach(x=>x.disabled=true);
+ });
+ let total=quizQuestions.length,pct=Math.round(score/total*100);
+ $("quizResult").innerHTML=`<div class="result ${pct<50?"bad":""}"><h3>نتيجتك: ${score} من ${total} (${pct}%)</h3><p>أجبت عن ${answered} سؤالًا.</p><p>${pct>=85?"ممتاز! استمر.":pct>=65?"جيد! راجع أخطاءك.":"راجع المحاضرة وحاول مرة أخرى."}</p></div>`;
+ $("gradeBtn").disabled=true;
+ let a=scores();a.unshift({subject:courses[currentSubject].name,title:quizType==="lesson"?courses[currentSubject].topics[currentLesson]:"اختبار المادة",score,total,pct,date:new Date().toLocaleDateString("ar-EG")});
+ writeStore("academyScores",a.slice(0,100));
 }
-function renderSubjects(){
-const html=subjects.map(subjectCard).join("");
-el("subjectList").innerHTML=html;
-el("subjectList2").innerHTML=html;
+function renderScores(){
+ let a=scores();
+ $("scoreList").innerHTML=a.length?a.map(s=>`<div class="lesson-item"><span class="lesson-num">📝</span><span class="lesson-info"><strong>${esc(s.title)}</strong><small>${esc(s.subject)} • ${esc(s.date)}</small></span><strong>${s.score}/${s.total} (${s.pct}%)</strong></div>`).join(""):'<div class="empty">لم تؤدِّ أي اختبار بعد. ابدأ اختبارًا من إحدى المواد.</div>';
 }
-function filterSubjects(){
-const v=el("subjectSearch").value.trim();
-el("subjectList").innerHTML=subjects.filter(s=>s.includes(v)).map(subjectCard).join("");
-}
-function filterSubjects2(){
-const v=el("subjectSearch2").value.trim();
-el("subjectList2").innerHTML=subjects.filter(s=>s.includes(v)).map(subjectCard).join("");
-}
-function openSubject(i){
-currentSubject=subjects[i];
-el("subjectHeading").textContent=currentSubject;
-el("lessonSearch").value="";
-renderLessons();
-showPage("lessonsPage");
-}
-function renderLessons(){
-el("lessonList").innerHTML=titles[currentSubject].map((t,j)=>`
-<div class="card" data-title="${t}">
-<span class="tag">المحاضرة ${j+1}</span><h3>${t}</h3>
-<button onclick="openLecture(${j})">فتح المحاضرة</button>
-<button class="secondary" onclick="startOneExam(${j})">اختبر نفسك</button>
-</div>`).join("");
-}
-function filterLessons(){
-const v=el("lessonSearch").value.trim();
-[...el("lessonList").children].forEach(c=>c.classList.toggle("hidden",!c.dataset.title.includes(v)));
-}
-function makeExample(s,i){
-const examples={
-"أصول المحاسبة المالية":"عند شراء أدوات نقدًا، حدد الحساب الذي زاد والحساب الذي نقص، ثم سجل طرفي العملية بقيم متساوية.",
-"مبادئ الاقتصاد الجزئي":"إذا ارتفع سعر سلعة مع ثبات العوامل الأخرى، فقد تنخفض الكمية المطلوبة وفق قانون الطلب.",
-"اقتصاديات التطور":"قد يرفع الاستثمار في التعليم والتدريب مهارات العاملين وإنتاجيتهم إذا توفرت فرص للاستفادة منها.",
-"أصول إدارة الأعمال":"عند تحديد هدف ثم توزيع المسؤوليات ومتابعة النتائج، نرى ترابط التخطيط والتنظيم والرقابة.",
-"الرياضيات البحتة":"لحل س + ٣ = ٧ نطرح ٣ من الطرفين فنحصل على س = ٤، ثم نتحقق بالتعويض.",
-"اللغة الأوروبية":"تدرّب على استخدام المفردات في جمل كاملة، وراجع ترتيب الكلمات والقواعد المقررة.",
-"الصحة والسلامة":"الإبلاغ عن سلك كهربائي تالف والابتعاد عنه وترك إصلاحه للمختصين يساعد على الحد من الخطر."
-};
-return examples[s]+" ويرتبط المثال بموضوع: "+titles[s][i]+".";
-}
-function openLecture(i){
-currentLesson=i;
-const title=titles[currentSubject][i];
-el("lectureContent").innerHTML=`
-<span class="tag">${currentSubject}</span>
-<h2>المحاضرة ${i+1}: ${title}</h2>
-<h3>شرح المادة</h3><p>${descriptions[currentSubject]}</p>
-<h3>موضوع المحاضرة</h3>
-<p>يركز هذا الدرس على ${title}. ابدأ بتحديد التعريف والمصطلحات الأساسية، ثم افهم العناصر والعلاقات بينها. حاول تفسير الأسباب والنتائج، وقارن المفهوم بالمفاهيم القريبة منه، وطبّق القواعد على أمثلة من المقرر.</p>
-<h3>مثال تطبيقي</h3><p>${makeExample(currentSubject,i)}</p>
-<h3>نقاط للمراجعة</h3>
-<ul><li>اكتب تعريف ${title} بأسلوب واضح.</li><li>حدد أهم العناصر والخطوات.</li><li>اذكر مثالًا صحيحًا من المقرر.</li><li>قارن المفهوم بما يشبهه وحدد الاختلاف.</li></ul>
-<div class="card"><h3>ملخص سريع</h3><p>افهم التعريف والعناصر الأساسية وطريقة التطبيق والأخطاء الشائعة، ثم أجب عن الأسئلة دون النظر إلى الإجابة النموذجية.</p></div>`;
-showPage("lecturePage");
-}
-
-const mcq={
-"أصول المحاسبة المالية":[
-["المحاسبة المالية تهتم أساسًا بـ:",["تسجيل وتلخيص العمليات المالية","توقع الطقس","تصميم المباني"],0],
-["المعادلة المحاسبية هي:",["الأصول = الخصوم + حقوق الملكية","الأصول = المصروفات فقط","الخصوم = الإيرادات"],0],
-["دفتر اليومية يرتب العمليات حسب:",["تاريخ حدوثها","لون المستند","حجم المنشأة"],0],
-["ميزان المراجعة يفحص أساسًا:",["تساوي الأرصدة المدينة والدائنة","عدد العملاء فقط","قيمة المخزون فقط"],0],
-["قائمة المركز المالي تعرض:",["الأصول والخصوم وحقوق الملكية","الإيرادات فقط","المصروفات فقط"],0]],
-"مبادئ الاقتصاد الجزئي":[
-["الاقتصاد الجزئي يدرس:",["سلوك المستهلكين والمنتجين والأسواق","الكواكب","قواعد الإملاء"],0],
-["تكلفة الفرصة البديلة هي:",["قيمة أفضل بديل تم التخلي عنه","كل النقود الموجودة","السعر الأصلي فقط"],0],
-["الطلب يعبر عن الكميات التي:",["يرغب ويستطيع المستهلك شراءها","ينتجها المصنع فقط","تخزن دائمًا"],0],
-["يتحقق توازن السوق عندما:",["تتساوى الكمية المطلوبة والمعروضة","ينعدم العرض دائمًا","يكون السعر صفرًا"],0],
-["التكاليف الإجمالية تساوي:",["الثابتة + المتغيرة","الإيرادات فقط","السعر فقط"],0]],
-"اقتصاديات التطور":[
-["التنمية الاقتصادية تشمل:",["تحسين مستوى المعيشة والقدرات","زيادة الأسعار فقط","إلغاء التعليم"],0],
-["النمو الاقتصادي يرتبط بزيادة:",["الناتج الحقيقي","عدد العطلات","عدد الأسماء"],0],
-["من موارد التنمية:",["الموارد البشرية والمالية والطبيعية","المخاطر وحدها","المعلومات العشوائية"],0],
-["يسهم التعليم في بناء:",["رأس المال البشري","المخزون التالف","الديون وحدها"],0],
-["يمكن للتكنولوجيا أن ترفع:",["الإنتاجية","الهدر دائمًا","البطالة في كل الحالات"],0]],
-"أصول إدارة الأعمال":[
-["من وظائف الإدارة:",["التخطيط والتنظيم والتوجيه والرقابة","التخمين فقط","إهمال الأهداف"],0],
-["التخطيط يهتم بـ:",["الأهداف والوسائل","إخفاء المسؤوليات","إلغاء المتابعة"],0],
-["التنظيم يوضح:",["المهام والمسؤوليات والصلاحيات","الطقس","أسعار العملات فقط"],0],
-["الرقابة تقارن الأداء بـ:",["المعايير والأهداف","الأسماء فقط","الرغبات فقط"],0],
-["اتخاذ القرار يتطلب:",["دراسة البدائل والنتائج","الاختيار العشوائي دائمًا","تجاهل المعلومات"],0]],
-"الرياضيات البحتة":[
-["إذا كان س + ٣ = ٧ فإن س =",["٤","٣","١٠"],0],
-["٢ × ٥ يساوي:",["١٠","٧","٣"],0],
-["مربع العدد ٤ هو:",["١٦","٨","١٢"],0],
-["إذا كان س = ٢ فإن س + ٥ =",["٧","٣","١٠"],0],
-["عند ضرب طرفي متباينة في عدد سالب:",["تنعكس إشارة المتباينة","لا تتغير الإشارة","تصبح مساواة"],0]],
-"اللغة الأوروبية":[
-["تستخدم التحيات عادةً من أجل:",["بدء التواصل بأدب","حل معادلة","حساب التكاليف"],0],
-["التعريف بالنفس يتضمن:",["معلومات مناسبة عن الشخص","قائمة أسعار فقط","أرقامًا بلا سياق"],0],
-["الضمائر الشخصية تحل محل:",["الأسماء","الأرقام فقط","علامات الترقيم"],0],
-["الأفعال تدل غالبًا على:",["حدث أو حالة","لون فقط","مكان دائمًا"],0],
-["فهم النص يعتمد على:",["الفكرة العامة والتفاصيل والسياق","تجاهل الكلمات","العنوان وحده دائمًا"],0]],
-"الصحة والسلامة":[
-["هدف السلامة المهنية هو:",["تقليل المخاطر وحماية الأفراد","زيادة الحوادث","إغلاق المخارج"],0],
-["عند ملاحظة خطر يجب:",["الإبلاغ واتباع الإجراءات","تجاهله","إخفاؤه"],0],
-["ممرات الإخلاء يجب أن تكون:",["خالية من العوائق","مغلقة بالأغراض","غير معروفة"],0],
-["عند وجود سلك تالف يجب:",["الابتعاد وإبلاغ المختص","لمسه مباشرة","إصلاحه دون تدريب"],0],
-["معدات الوقاية يجب أن تكون:",["مناسبة للخطر وتستخدم وفق التعليمات","غير مناسبة","بديلًا عن كل إجراءات الوقاية"],0]]
-};
-
-const writtenTemplates={
-"أصول المحاسبة المالية":[
-["بم تفسر أهمية الموضوع في المحاسبة؟",["المعلومات المالية","القرارات","التسجيل"]],
-["قارن بين المدين والدائن.",["مدين","دائن","الحساب"]],
-["أكمل: الأصول = الخصوم + ____.",["حقوق الملكية"]],
-["اشرح خطوات المعالجة المحاسبية.",["تحليل","التسجيل","الترحيل","القوائم المالية"]],
-["اذكر مثالًا محاسبيًا واشرحه.",["عملية مالية","حساب","قيد"]]],
-"مبادئ الاقتصاد الجزئي":[
-["بم تفسر أهمية الموضوع في تحليل السوق؟",["السوق","المستهلك","المنتج"]],
-["قارن بين الطلب والعرض.",["الطلب","المستهلك","العرض","المنتج"]],
-["أكمل: يتوازن السوق عندما تتساوى الكمية المطلوبة مع الكمية ____.",["المعروضة"]],
-["وضح أثر تغير السعر أو الدخل على السوق.",["السعر","الدخل","الكمية","الطلب"]],
-["اذكر مثالًا اقتصاديًا واشرحه.",["السوق","السعر","المستهلك"]]],
-"اقتصاديات التطور":[
-["بم تفسر أهمية الموضوع للتنمية؟",["التنمية","الإنتاجية","المعيشة"]],
-["قارن بين النمو والتنمية الاقتصادية.",["النمو","الناتج","التنمية","المعيشة"]],
-["أكمل: من عناصر التنمية التعليم و____.",["الاستثمار","الموارد","التكنولوجيا"]],
-["اشرح أثر الموضوع على مستوى المعيشة.",["المعيشة","الإنتاجية","الموارد"]],
-["اذكر مثالًا لدعم التنمية.",["الاستثمار","التعليم","التكنولوجيا"]]],
-"أصول إدارة الأعمال":[
-["بم تفسر أهمية الموضوع في المؤسسة؟",["الأهداف","الموارد","الأداء"]],
-["قارن بين التخطيط والتنظيم.",["التخطيط","الأهداف","التنظيم","المسؤوليات"]],
-["أكمل: وظائف الإدارة تشمل التخطيط والتنظيم والتوجيه و____.",["الرقابة"]],
-["وضح كيف يطبق المدير المفهوم.",["المدير","المهام","الأهداف","المتابعة"]],
-["اذكر مثالًا إداريًا.",["المؤسسة","المهام","المسؤوليات"]]],
-"الرياضيات البحتة":[
-["اشرح خطوات حل مسألة مرتبطة بالموضوع.",["الخطوات","الحل","التحقق"]],
-["قارن بين مفهومين رياضيين.",["التعريف","الاختلاف","المفهوم"]],
-["أكمل: نتحقق من الحل بالتعويض في ____ الأصلية.",["المعادلة"]],
-["حل مثالًا من الموضوع مع توضيح الخطوات.",["الحل","الخطوات","الناتج"]],
-["اذكر قاعدة رياضية ووضحها.",["قاعدة","قانون","الحل"]]],
-"اللغة الأوروبية":[
-["بم تفسر أهمية الموضوع في التواصل؟",["التواصل","المعنى","الجملة"]],
-["قارن بين مثالين لغويين.",["الجملة","الكلمات","الاختلاف"]],
-["أكمل: يساعد السياق على فهم ____ النص.",["معنى","الفكرة"]],
-["اكتب مثالًا لغويًا واشرحه.",["مثال","الجملة","المعنى"]],
-["اذكر قاعدة أو مفردة أساسية.",["قاعدة","مفردة","المعنى"]]],
-"الصحة والسلامة":[
-["بم تفسر أهمية الموضوع في بيئة العمل؟",["الوقاية","المخاطر","الحوادث"]],
-["قارن بين الخطر وإجراء الوقاية.",["الخطر","الوقاية","الحماية"]],
-["أكمل: تهدف السلامة إلى تقليل ____.",["المخاطر","الحوادث"]],
-["اشرح إجراءً آمنًا مرتبطًا بالموضوع.",["الإبلاغ","التعليمات","الوقاية"]],
-["اذكر خطرًا وطريقة الحد منه.",["الخطر","الإبلاغ","الحماية"]]]
-};
-
-function buildQuestions(subject,lesson){
-const topic=titles[subject][lesson],questions=[];
-mcq[subject].forEach((q,i)=>questions.push({
-type:"اختيار من متعدد",q:topic+" — "+q[0],options:q[1],answer:q[2],points:1
-}));
-const templates=writtenTemplates[subject];
-for(let i=0;i<15;i++){
-const t=templates[i%templates.length];
-questions.push({
-type:["بم تفسر","مقارنة","أكمل","إجابة قصيرة","تطبيق"][i%5],
-q:t[0].replace("الموضوع",topic),
-keywords:t[1],
-model:"الإجابة النموذجية يجب أن تتناول: "+t[1].join("، ")+". راجع شرح المحاضرة للتأكد من اكتمال الإجابة.",
-points:3
-});
-}
-return questions;
-}
-function startLectureExam(){
-examMode="lesson";
-questionsNow=buildQuestions(currentSubject,currentLesson);
-renderExam("اختبار المحاضرة: "+titles[currentSubject][currentLesson]);
-}
-function startOneExam(i){currentLesson=i;startLectureExam()}
-function startSubjectExam(){
-examMode="subject";
-questionsNow=[];
-for(let i=0;i<10;i++)questionsNow.push(...buildQuestions(currentSubject,i));
-renderExam("الاختبار الشامل: "+currentSubject);
-}
-function escapeHTML(s){
-return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-}
-function renderExam(title){
-showPage("examPage");
-el("examContent").innerHTML=`<h2>${title}</h2>
-<p class="muted">الاختيار من متعدد: درجة لكل سؤال. الأسئلة الكتابية: 3 درجات لكل سؤال حسب الكلمات المفتاحية. التصحيح تقريبي.</p>
-<div class="stats"><div class="stat"><b>${questionsNow.length}</b>عدد الأسئلة</div><div class="stat"><b>${questionsNow.filter(q=>q.options).length}</b>اختيار من متعدد</div><div class="stat"><b>${questionsNow.filter(q=>!q.options).length}</b>كتابي</div></div>
-<form id="examForm">
-${questionsNow.map((q,i)=>`<div class="card" id="question${i}">
-<span class="tag">${q.type} • ${q.points} ${q.points===1?"درجة":"درجات"}</span>
-<h3>${i+1}. ${escapeHTML(q.q)}</h3>
-${q.options?q.options.map((o,j)=>`<label class="option"><input type="radio" name="q${i}" value="${j}">${escapeHTML(o)}</label>`).join(""):`<textarea name="q${i}" placeholder="اكتب إجابتك هنا..."></textarea>`}
-<div id="feedback${i}"></div>
-<details><summary>عرض الإجابة النموذجية</summary><div class="answer">${escapeHTML(q.options?q.options[q.answer]:q.model)}</div></details>
-</div>`).join("")}
-<button type="button" onclick="gradeExam()">صحح الاختبار تلقائيًا</button>
-<button type="button" class="secondary" onclick="showAnswers()">عرض الإجابات النموذجية</button>
-</form><div id="result"></div>`;
-}
-function normalize(s){
-return String(s||"").toLowerCase()
-.replace(/[أإآ]/g,"ا").replace(/ى/g,"ي")
-.replace(/[ًٌٍَُِّْـ]/g,"")
-.replace(/[.,،؛:!?؟()\-]/g," ")
-.replace(/\s+/g," ").trim();
-}
-function keywordPresent(answer,keyword){
-const a=normalize(answer),k=normalize(keyword);
-if(!k)return false;
-if(a.includes(k))return true;
-const words=k.split(" ").filter(Boolean);
-return words.length>1&&words.every(w=>a.includes(w));
-}
-function gradeExam(){
-let mcScore=0,mcMax=0,writtenScore=0,writtenMax=0,answered=0;
-questionsNow.forEach((q,i)=>{
-const fb=el("feedback"+i);
-if(q.options){
-mcMax+=q.points;
-const picked=document.querySelector(`input[name="q${i}"]:checked`);
-if(picked){
-answered++;
-if(Number(picked.value)===q.answer){
-mcScore+=q.points;
-fb.innerHTML='<p class="good">إجابة صحيحة ✓</p>';
-}else fb.innerHTML='<p class="bad">إجابة غير صحيحة. راجع الإجابة النموذجية.</p>';
-}else fb.innerHTML='<p class="bad">لم تتم الإجابة.</p>';
-}else{
-writtenMax+=q.points;
-const box=document.querySelector(`[name="q${i}"]`);
-const answer=box.value.trim();
-if(answer)answered++;
-const keys=q.keywords||[];
-const matched=keys.filter(k=>keywordPresent(answer,k));
-const earned=keys.length&&answer?Math.round(q.points*matched.length/keys.length):0;
-writtenScore+=earned;
-const pct=keys.length?Math.round(matched.length/keys.length*100):0;
-fb.innerHTML=`<p class="${earned>=q.points*.7?'good':earned>0?'':'bad'}">التقييم الآلي: ${earned} من ${q.points} — تطابق الكلمات المفتاحية: ${pct}% (${matched.length} من ${keys.length})</p>
-<p class="muted">قد تكون الإجابة صحيحة بصياغة مختلفة ولا يتعرف عليها النظام؛ راجع الإجابة النموذجية.</p>`;
-}
-});
-const total=mcMax+writtenMax,score=mcScore+writtenScore;
-const percent=total?Math.round(score/total*100):0;
-el("result").innerHTML=`<div class="panel"><h2>نتيجة التصحيح</h2>
-<div class="stats">
-<div class="stat"><b>${score} / ${total}</b>الدرجة</div>
-<div class="stat"><b>${percent}%</b>النسبة</div>
-<div class="stat"><b>${answered} / ${questionsNow.length}</b>أُجيب عنها</div>
-</div>
-<p>الاختيار من متعدد: <b>${mcScore} من ${mcMax}</b></p>
-<p>الأسئلة الكتابية: <b>${writtenScore} من ${writtenMax}</b></p>
-<progress value="${percent}" max="100"></progress>
-<p class="muted">الدرجة المقالية تقديرية وتعتمد على الكلمات المفتاحية، ولا تفهم المعنى الكامل للإجابة. راجع الإجابات النموذجية.</p>
-<button onclick="backFromExam()">العودة</button><button class="secondary" onclick="window.print()">طباعة النتيجة</button></div>`;
-el("result").scrollIntoView({behavior:"smooth",block:"start"});
-}
-function showAnswers(){
-document.querySelectorAll("#examForm details").forEach(d=>d.open=true);
-}
-function backFromExam(){
-if(examMode==="lesson")showPage("lecturePage");
-else showPage("lessonsPage");
-}
-init();
+renderHome();renderCourses();
 </script>
 </body>
 </html>
